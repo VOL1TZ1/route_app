@@ -1,8 +1,13 @@
-import NotFoundPage from "@/app/not-found";
 import { redirect } from "next/navigation";
 
 export default async function ReviewPage({ params }: { params: Promise<{ productId: string; reviewId: string }> }) {
+    
+    const random = getRandomInt(2);
     const resolvedParams = await params;
+
+    if (random === 0) {
+        throw new Error("Random error occurred while fetching review page.");
+    }
     if (resolvedParams.reviewId <= "1000") {
         return (
             <div>
@@ -14,3 +19,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ product
     }
     return (redirect('/product')); // Redirect to /product if reviewId > 1000
 }
+function getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+}
+
