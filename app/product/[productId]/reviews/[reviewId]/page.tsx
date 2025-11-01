@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 
 export default async function ReviewPage({ params }: { params: Promise<{ productId: string; reviewId: string }> }) {
-    
-    const random = getRandomInt(2);
+
     const resolvedParams = await params;
+    const random = getRandomInt(2);
 
     if (random === 0) {
         throw new Error("Random error occurred while fetching review page.");
